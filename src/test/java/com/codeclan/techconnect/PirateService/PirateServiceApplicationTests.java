@@ -10,6 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 class PirateServiceApplicationTests {
 
@@ -48,6 +52,37 @@ class PirateServiceApplicationTests {
 
 		tortugaRaid.addPirate(pirate);
 		raidRepository.save(tortugaRaid); // Save new row in join table
+	}
+
+	@Test
+	public void canFindPiratesOver30() {
+		List<Pirate> foundPirates = pirateRepository.findByAgeGreaterThan(30);
+	}
+
+	@Test
+	public void canFindBarbadosRaids() {
+		List<Raid> foundRaids = raidRepository.findByLocation("Barbados");
+//		assertEquals("Barbados", foundRaids.get(1).getLocation());
+	}
+
+	@Test
+	public void canGetPiratesByGivenRaid() {
+		List<Pirate> foundPirates = pirateRepository.findByRaidsId(1L); // L here means treat this primitive as a Long
+		assertEquals(1, foundPirates.size());
+		assertEquals("Jack", foundPirates.get(0).getFirstName());
+	}
+
+	@Test
+	public void canGetShipsByPiratesFirstNameJack() {
+		List<Ship> foundShips = shipRepository.findByPiratesFirstName("Jack");
+		assertEquals(1, foundShips.size());
+		assertEquals("The Black Pearl", foundShips.get(0).getName());
+	}
+
+	@Test
+	public void canGetRaidsByGivenShip() {
+		List<Raid> foundRaids = raidRepository.findByPiratesShipId(3L);
+//		assertEquals("The Flying Dutchman", foundRaids.get(0).);
 	}
 
 }
