@@ -23,6 +23,7 @@ public class Pirate {
     private int age;
 
     @ManyToOne
+    @JsonIgnoreProperties("pirates")
     @JoinColumn(name = "ship_id", nullable = false) // Creating foreign key and making no pirate exist without a ship
     private Ship ship;
 

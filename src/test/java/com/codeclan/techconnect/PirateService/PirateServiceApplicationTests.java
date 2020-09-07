@@ -82,7 +82,7 @@ class PirateServiceApplicationTests {
 	@Test
 	public void canGetRaidsByGivenShip() {
 		List<Raid> foundRaids = raidRepository.findByPiratesShipId(3L);
-//		assertEquals("The Flying Dutchman", foundRaids.get(0).);
+		assertEquals(2, foundRaids.size());
 	}
 
 }
