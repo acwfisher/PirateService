@@ -30,10 +30,10 @@ public class ShipController {
         Optional<Ship> foundShip = shipRepository.findById(id);
 
         if (foundShip.isPresent()) {
-            return new ResponseEntity(foundShip, HttpStatus.OK);
+            return new ResponseEntity<>(foundShip, HttpStatus.OK);
         }
         else {
-            return new ResponseEntity(foundShip, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(foundShip, HttpStatus.NOT_FOUND);
         }
     }
 

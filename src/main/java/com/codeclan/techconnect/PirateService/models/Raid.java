@@ -72,6 +72,14 @@ public class Raid {
         this.loot = loot;
     }
 
+    public List<Pirate> getPirates() {
+        return pirates;
+    }
+
+    public void setPirates(List<Pirate> pirates) {
+        this.pirates = pirates;
+    }
+
     // Method to add pirate to raid
     public void addPirate(Pirate pirateToAdd) {
         this.pirates.add(pirateToAdd);

@@ -40,14 +40,14 @@ public class PirateController {
     // SHOW: show details about a specific pirate
     // e.g. http://localhost:8080/pirates/1
     @GetMapping(value = "/pirates/{id}")
-    public ResponseEntity getPirate(@PathVariable Long id) {
+    public ResponseEntity<Optional<Pirate>> getPirate(@PathVariable Long id) {
         Optional<Pirate> foundPirate = pirateRepository.findById(id);
 
         if (foundPirate.isPresent()) {
-            return new ResponseEntity(foundPirate, HttpStatus.OK);
+            return new ResponseEntity<>(foundPirate, HttpStatus.OK);
         }
         else {
-            return new ResponseEntity(foundPirate, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(foundPirate, HttpStatus.NOT_FOUND);
         }
     }
 
